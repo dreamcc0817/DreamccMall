@@ -1,0 +1,19 @@
+################################  服务器配置  ################################
+server:
+  servlet:
+    context-path: /dreamccmall
+################################ 数据源配置  ################################
+spring:
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mmall
+    type: com.zaxxer.hikari.HikariDataSource
+
+################################ mybatis配置  ################################
+mybatis:
+  config-location: classpath:commons/mybatis-config.xml
+  mapper-locations: classpath:mappers/*.xml
+
+
