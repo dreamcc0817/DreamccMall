@@ -2,8 +2,10 @@ package com.dreamcc.mall.configer;
 
 import com.google.common.base.Predicate;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.ResponseEntity;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -24,7 +26,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 public class SwaggerConfig {
 
-	@Value("${server.servlet-path}")
+	@Value("${server.servlet.context-path}")
 	private String pathMapping;
 
 	private ApiInfo initApiInfo() {
@@ -46,8 +48,9 @@ public class SwaggerConfig {
 		return sb.toString();
 	}
 
+	@Bean
 	public Docket restfulApi(){
-		System.out.println("http://localhost:8080/" + pathMapping + "/swagger-ui.html");
+		System.out.println("http://localhost:8080" + pathMapping + "/swagger-ui.html");
 		return new Docket(DocumentationType.SWAGGER_2)
 				.groupName("dreamcc")
 				.genericModelSubstitutes(ResponseEntity.class)
@@ -55,7 +58,8 @@ public class SwaggerConfig {
 				.forCodeGeneration(false)
 				.pathMapping(pathMapping)
 				.select()
-				.paths(doFilteringRules())
+				.apis(RequestHandlerSelectors.basePackage("com.dreamcc.mall.controller"))
+				.paths(doFilteringRules())//PathSelectors.any()
 				.build()
 				.apiInfo(initApiInfo());
 	}
@@ -68,7 +72,8 @@ public class SwaggerConfig {
 	private Predicate<String> doFilteringRules() {
 		return or(
 				regex("/hello.*"),
-				regex("/vehicles.*")
+				regex("/vehicles.*"),
+				regex("/user.*")
 		);
 	}
 }
