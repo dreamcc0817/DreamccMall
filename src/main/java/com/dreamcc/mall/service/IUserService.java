@@ -19,4 +19,21 @@ public interface IUserService {
 	 * @return
 	 */
 	ServerResponse<User> login(String username, String password);
+
+	/**
+	 * user register
+	 * @param user
+	 * @return
+	 */
+	ServerResponse<String> register(User user);
+
+	/**
+	 * check user is valid
+	 * @param str
+	 * @param type
+	 * @return
+	 */
+	ServerResponse<String> checkValid(String str,String type);
+
+
 }

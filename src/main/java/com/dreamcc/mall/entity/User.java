@@ -3,6 +3,7 @@ package com.dreamcc.mall.entity;
 import java.util.Date;
 
 public class User {
+
     private Integer id;
 
     private String username;

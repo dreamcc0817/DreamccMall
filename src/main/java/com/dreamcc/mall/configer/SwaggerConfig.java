@@ -56,7 +56,6 @@ public class SwaggerConfig {
 				.genericModelSubstitutes(ResponseEntity.class)
 				.useDefaultResponseMessages(true)
 				.forCodeGeneration(false)
-				.pathMapping(pathMapping)
 				.select()
 				.apis(RequestHandlerSelectors.basePackage("com.dreamcc.mall.controller"))
 				.paths(doFilteringRules())//PathSelectors.any()

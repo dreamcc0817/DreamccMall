@@ -5,9 +5,36 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
 
-    int checkUsername(String username);
+	/**
+	 * check username is exist
+	 *
+	 * @param username
+	 * @return
+	 */
+	int checkUsername(@Param("username") String username);
 
-    int checkEmail(String email);
+	/**
+	 * check email is exist
+	 *
+	 * @param email
+	 * @return
+	 */
+	int checkEmail(@Param("email") String email);
 
-    User selectLogin(@Param("username") String username, @Param("password")String password);
+	/**
+	 * login operation
+	 *
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	User selectLogin(@Param("username") String username, @Param("password") String password);
+
+	/**
+	 * user register
+	 *
+	 * @param user
+	 * @return
+	 */
+	int register(User user);
 }

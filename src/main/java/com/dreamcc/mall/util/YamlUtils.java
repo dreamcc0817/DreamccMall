@@ -24,8 +24,10 @@ public class YamlUtils {
 
 	private static Map map;
 
+
+
 	static{
-		File config = new File("classpath:application.yml");
+		File config = new File("src/main/resources/application.yml");
 		try {
 			map = Yaml.loadType(config, HashMap.class);
 		} catch (FileNotFoundException e) {
