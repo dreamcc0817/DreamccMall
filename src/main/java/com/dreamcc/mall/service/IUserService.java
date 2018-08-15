@@ -35,5 +35,59 @@ public interface IUserService {
 	 */
 	ServerResponse<String> checkValid(String str,String type);
 
+	/**
+	 * select Question check user identity
+	 * @param username
+	 * @return
+	 */
+	ServerResponse<String> selectQuestion(String username);
+
+	/**
+	 * update user password by answer mapping question
+	 * @param username
+	 * @param question
+	 * @param answer
+	 * @return
+	 */
+	ServerResponse<String> checkAnswer(String username,String question,String answer);
+
+	/**
+	 *
+	 * @param username
+	 * @param passwordNew
+	 * @param token
+	 * @return
+	 */
+	ServerResponse<String> forgetResetPassword(String username,String passwordNew,String token);
+
+	/**
+	 * rest password by username
+	 * @param passwordOld
+	 * @param passwordNew
+	 * @param user
+	 * @return
+	 */
+	ServerResponse<String> resetPassword(String passwordOld,String passwordNew,User user);
+
+	/**
+	 * update userinfo
+	 * @param user
+	 * @return
+	 */
+	ServerResponse<User> updateInformation(User user);
+
+	/**
+	 * get user info
+	 * @param userId
+	 * @return
+	 */
+	ServerResponse<User> getInformation(Integer userId);
+
+	/**
+	 * check user role is administrator
+	 * @param user
+	 * @return
+	 */
+	ServerResponse checkAdminRole(User user);
 
 }

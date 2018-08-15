@@ -2,6 +2,7 @@ package com.dreamcc.mall.service.impl;
 
 import com.dreamcc.mall.common.Const;
 import com.dreamcc.mall.common.ServerResponse;
+import com.dreamcc.mall.common.TokenCache;
 import com.dreamcc.mall.entity.User;
 import com.dreamcc.mall.mapper.UserMapper;
 import com.dreamcc.mall.service.IUserService;
@@ -9,6 +10,8 @@ import com.dreamcc.mall.util.MD5Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 /**
  * @Title: DreamccMall
@@ -64,13 +67,13 @@ public class UserServiceImpl implements IUserService {
 		if (StringUtils.isNotBlank(type)) {
 			if (Const.USERNAME.equals(type)) {
 				int resultCount = userMapper.checkUsername(str);
-				if (resultCount > 1) {
+				if (resultCount > 0) {
 					return ServerResponse.createByErrorMessage("username is exist");
 				}
 			}
 			if (Const.EMAIL.equals(type)) {
 				int resultCount = userMapper.checkEmail(str);
-				if (resultCount > 1) {
+				if (resultCount > 0) {
 					return ServerResponse.createByErrorMessage("email is exist");
 				}
 			}
@@ -78,5 +81,84 @@ public class UserServiceImpl implements IUserService {
 			return ServerResponse.createByErrorMessage("param error");
 		}
 		return ServerResponse.createBySuccessMessage("valid success");
+	}
+
+	@Override
+	public ServerResponse<String> selectQuestion(String username) {
+		ServerResponse validResponse = this.checkValid(username, Const.USERNAME);
+		if (validResponse.isSuccess()) {
+			return ServerResponse.createByErrorMessage("user is not exist");
+		}
+		String question = userMapper.selectQuestionByUsername(username);
+		if (org.apache.commons.lang3.StringUtils.isNotBlank(question)) {
+			return ServerResponse.createBySuccess(question);
+		}
+		return ServerResponse.createByErrorMessage("rest password question is null");
+	}
+
+	@Override
+	public ServerResponse<String> checkAnswer(String username, String question, String answer) {
+		int restCount = userMapper.checkAnswer(username, question, answer);
+		if (restCount > 0) {
+			String forgetToken = UUID.randomUUID().toString();
+			TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
+			return ServerResponse.createBySuccess(forgetToken);
+		}
+		return ServerResponse.createByErrorMessage("answer is error");
+	}
+
+	@Override
+	public ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken) {
+		if (StringUtils.isBlank(forgetToken)) {
+			return ServerResponse.createByErrorMessage("param is error ,param need token");
+		}
+		ServerResponse<String> validResponse = this.checkValid(username, Const.USERNAME);
+		if (validResponse.isSuccess()) {
+			return ServerResponse.createByErrorMessage("user is not exist");
+		}
+		String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);
+		if (StringUtils.isBlank(token)) {
+			return ServerResponse.createByErrorMessage("token is error");
+		}
+		if (org.apache.commons.lang3.StringUtils.equals(forgetToken, token)) {
+			String md5Password = MD5Utils.MD5EncodeUtf8ByYaml(passwordNew);
+			int rowCount = userMapper.updatePasswordByUsername(username, md5Password);
+			if (rowCount > 0) {
+				return ServerResponse.createBySuccessMessage("update password is success");
+			}
+		} else {
+			return ServerResponse.createByErrorMessage("token error,please attach new token");
+		}
+		return ServerResponse.createByErrorMessage("update password is failed");
+	}
+
+	@Override
+	public ServerResponse<String> resetPassword(String passwordOld, String passwordNew, User user) {
+		int resultCount = userMapper.checkPassword(MD5Utils.MD5EncodeUtf8ByYaml(passwordOld),user.getId());
+		if(resultCount == 0){
+			return ServerResponse.createByErrorMessage("旧密码错误");
+		}
+
+		user.setPassword(MD5Utils.MD5EncodeUtf8ByYaml(passwordNew));
+		int updateCount = userMapper.updateByPrimaryKeySelective(user);
+		if(updateCount > 0){
+			return ServerResponse.createBySuccessMessage("密码更新成功");
+		}
+		return ServerResponse.createByErrorMessage("密码更新失败");
+	}
+
+	@Override
+	public ServerResponse<User> updateInformation(User user) {
+		return null;
+	}
+
+	@Override
+	public ServerResponse<User> getInformation(Integer userId) {
+		return null;
+	}
+
+	@Override
+	public ServerResponse checkAdminRole(User user) {
+		return null;
 	}
 }
