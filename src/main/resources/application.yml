@@ -2,6 +2,7 @@
 server:
   servlet:
     context-path: /dreamccmall
+  port: 9099
 ################################ 数据源配置  ################################
 spring:
   datasource:
@@ -10,10 +11,15 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mmall?useUnicode=true&characterEncoding=utf-8&useSSL=false
     type: com.zaxxer.hikari.HikariDataSource
+  thymeleaf:
+    cache: false
+    prefix: classpath:/webapp/
+    suffix: .html
+  messages:
+    basename: i18n.login
 
 ################################ mybatis配置  ################################
 mybatis:
   config-location: classpath:commons/mybatis-config.xml
   mapper-locations: classpath:mappers/*.xml
-
 

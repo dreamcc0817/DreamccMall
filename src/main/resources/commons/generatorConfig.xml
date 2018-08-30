@@ -37,7 +37,9 @@
         </javaClientGenerator>
 
         <!-- !!!! Table Configurations !!!! -->
-        <table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+        <!--<table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--enableUpdateByExample="false"/>-->
+        <table tableName="mmall_category" domainObjectName="Category" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>
