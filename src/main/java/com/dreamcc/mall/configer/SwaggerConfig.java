@@ -49,8 +49,7 @@ public class SwaggerConfig {
 	}
 
 	@Bean
-	public Docket restfulApi(){
-		System.out.println("http://localhost:8080" + pathMapping + "/swagger-ui.html");
+	public Docket restfulApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.groupName("dreamcc")
 				.genericModelSubstitutes(ResponseEntity.class)
@@ -66,12 +65,11 @@ public class SwaggerConfig {
 	/**
 	 * set filter regular
 	 * filter support regex
+	 *
 	 * @return
 	 */
 	private Predicate<String> doFilteringRules() {
 		return or(
-				regex("/hello.*"),
-				regex("/vehicles.*"),
 				regex("/user.*")
 		);
 	}

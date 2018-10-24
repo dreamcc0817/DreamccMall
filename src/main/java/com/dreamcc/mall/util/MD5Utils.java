@@ -73,11 +73,6 @@ public class MD5Utils {
 		return resultString.toUpperCase();
 	}
 
-	public static String MD5EncodeUtf8ByProperty(String origin) {
-		origin = origin + PropertiesUtils.getProperty("password.salt", "");
-		return MD5Encode(origin, "utf-8");
-	}
-
 	public static String MD5EncodeUtf8ByYaml(String origin) {
 		origin = origin + YamlUtils.getProperty("password.salt", "");
 		return MD5Encode(origin, "utf-8");

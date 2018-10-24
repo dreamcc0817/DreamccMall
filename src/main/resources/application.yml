@@ -23,3 +23,13 @@ mybatis:
   config-location: classpath:commons/mybatis-config.xml
   mapper-locations: classpath:mappers/*.xml
 
+################################ redis配置  ################################
+redis:
+  max:
+    total: 20
+    idle: 20
+  min:
+    idle: 20
+  test:
+    borrow: true
+    return: true
