@@ -1,15 +1,21 @@
 package com.dreamcc.mall.controller;
 
-import com.dreamcc.mall.common.Const;
 import com.dreamcc.mall.common.ServerResponse;
 import com.dreamcc.mall.entity.User;
 import com.dreamcc.mall.service.IUserService;
+import com.dreamcc.mall.util.CookieUtil;
+import com.dreamcc.mall.util.JsonUtil;
+import com.dreamcc.mall.util.RedisPoolUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -32,19 +38,25 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@ApiOperation(value = "login", notes = "the moudle is login", response = String.class)
+	@ApiOperation(value = "/login", notes = "the moudle is login", response = String.class)
 	@PostMapping("/login")
-	public ServerResponse<User> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+	public ServerResponse<User> login(@RequestParam("username") String username, @RequestParam("password") String password, @ApiIgnore HttpSession session, @ApiIgnore HttpServletResponse httpServletResponse) {
 		ServerResponse<User> response = userService.login(username, password);
 		if (response.isSuccess()) {
-			//	session.setAttribute(Const.CURRENT_USER, response.getData());
+			CookieUtil.writeLoginToken(httpServletResponse, session.getId());
 		}
 		return response;
 	}
 
+	public ServerResponse<String> logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
+		String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+		CookieUtil.delLoginToken(httpServletRequest, httpServletResponse);
+		return ServerResponse.createBySuccess();
+	}
+
 	@ApiOperation(value = "register", notes = "the moudle is regist")
 	@PostMapping("/regist")
-	public ServerResponse<String> register(@RequestBody @ModelAttribute("user") @ApiParam(name = "user") User user) {
+	public ServerResponse<String> register(@ModelAttribute("user") @ApiParam(name = "user") User user) {
 		return userService.register(user);
 	}
 
@@ -56,8 +68,13 @@ public class UserController {
 
 	@ApiOperation(value = "get user info", notes = "the moudle is get user info", response = String.class)
 	@GetMapping("/getUserInfo")
-	public ServerResponse<User> getUserInfo(HttpSession session) {
-		User user = (User) session.getAttribute(Const.CURRENT_USER);
+	public ServerResponse<User> getUserInfo(@ApiIgnore HttpServletRequest httpServletRequest) {
+		String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+		if (StringUtils.isEmpty(loginToken)) {
+			return ServerResponse.createByErrorMessage("user is not logged in");
+		}
+		String userJsonStr = RedisPoolUtil.get(loginToken);
+		User user = JsonUtil.stringToObj(userJsonStr, User.class);
 		if (user != null) {
 			return ServerResponse.createBySuccess(user);
 		}
@@ -84,8 +101,13 @@ public class UserController {
 
 	@ApiOperation(value = "reset password", notes = "the moudle is reset password", response = String.class)
 	@PostMapping("/resetPassword")
-	public ServerResponse<String> resetPassword(HttpSession session, String passwordOld, String passwordNew) {
-		User user = (User) session.getAttribute(Const.CURRENT_USER);
+	public ServerResponse<String> resetPassword(@ApiIgnore HttpServletRequest httpServletRequest, String passwordOld, String passwordNew) {
+		String loginToken = CookieUtil.readLoginToken(httpServletRequest);
+		if (StringUtils.isEmpty(loginToken)) {
+			return ServerResponse.createByErrorMessage("user is not logged in");
+		}
+		String userJsonStr = RedisPoolUtil.get(loginToken);
+		User user = JsonUtil.stringToObj(userJsonStr, User.class);
 		if (user == null) {
 			return ServerResponse.createByErrorMessage("user is not logging");
 		}

@@ -16,6 +16,12 @@ public class Const {
 
 	public static final String USERNAME = "username";
 
+	public static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+	public static final String COOKIE_DOMAIN = "";
+
+	public static final String COOKIE_NAME = "";
+
 	public interface Role {
 		int ROLE_CUSTOMER = 0;
 		int ROLE_ADMIN = 1;
