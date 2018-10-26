@@ -44,7 +44,6 @@ public class SwaggerConfig {
 
 	private String initContextInfo() {
 		StringBuffer sb = new StringBuffer();
-
 		return sb.toString();
 	}
 
@@ -70,7 +69,8 @@ public class SwaggerConfig {
 	 */
 	private Predicate<String> doFilteringRules() {
 		return or(
-				regex("/user.*")
+				regex("/user.*"),
+				regex("/category.*")
 		);
 	}
 }
