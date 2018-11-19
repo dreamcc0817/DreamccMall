@@ -38,7 +38,7 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	@ApiOperation(value = "login", notes = "the moudle is login", response = String.class)
+	@ApiOperation(value = "login", notes = "the module is login", response = String.class)
 	@PostMapping("/login")
 	public ServerResponse<User> login(@RequestParam("username") String username, @RequestParam("password") String password, @ApiIgnore HttpSession session, @ApiIgnore HttpServletResponse httpServletResponse) {
 		ServerResponse<User> response = userService.login(username, password);
@@ -48,13 +48,14 @@ public class UserController {
 		return response;
 	}
 
+	@GetMapping("/logout")
 	public ServerResponse<String> logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
 		String loginToken = CookieUtil.readLoginToken(httpServletRequest);
 		CookieUtil.delLoginToken(httpServletRequest, httpServletResponse);
 		return ServerResponse.createBySuccess();
 	}
 
-	@ApiOperation(value = "register", notes = "the moudle is regist")
+	@ApiOperation(value = "register", notes = "the module is regist")
 	@PostMapping("/regist")
 	public ServerResponse<String> register(@ModelAttribute("user") @ApiParam(name = "user") User user) {
 		return userService.register(user);
@@ -66,7 +67,7 @@ public class UserController {
 		return userService.checkValid(str, type);
 	}
 
-	@ApiOperation(value = "get user info", notes = "the moudle is get user info", response = String.class)
+	@ApiOperation(value = "get user info", notes = "the module is get user info", response = String.class)
 	@GetMapping("/getUserInfo")
 	public ServerResponse<User> getUserInfo(@ApiIgnore HttpServletRequest httpServletRequest) {
 		String loginToken = CookieUtil.readLoginToken(httpServletRequest);
@@ -81,25 +82,25 @@ public class UserController {
 		return ServerResponse.createByErrorMessage("user is not logged in");
 	}
 
-	@ApiOperation(value = "forget get question", notes = "the moudle is forget get question", response = String.class)
+	@ApiOperation(value = "forget get question", notes = "the module is forget get question", response = String.class)
 	@PostMapping("/forgetGetQuestion")
 	public ServerResponse<String> forgetGetQuestion(String username) {
 		return userService.selectQuestion(username);
 	}
 
-	@ApiOperation(value = "forget checkAnswer", notes = "the moudle is forget check answer", response = String.class)
+	@ApiOperation(value = "forget checkAnswer", notes = "the module is forget check answer", response = String.class)
 	@PostMapping("/forgetCheckAnswer")
 	public ServerResponse<String> forgetCheckAnswer(String username, String question, String answer) {
 		return userService.checkAnswer(username, question, answer);
 	}
 
-	@ApiOperation(value = "forget rest password", notes = "the moudle is forget rest password", response = String.class)
+	@ApiOperation(value = "forget rest password", notes = "the module is forget rest password", response = String.class)
 	@PostMapping("/forgetRestPassword")
 	public ServerResponse<String> forgetRestPassword(String username, String passwordNew, String forgetToken) {
 		return userService.forgetResetPassword(username, passwordNew, forgetToken);
 	}
 
-	@ApiOperation(value = "reset password", notes = "the moudle is reset password", response = String.class)
+	@ApiOperation(value = "reset password", notes = "the module is reset password", response = String.class)
 	@PutMapping("/resetPassword")
 	public ServerResponse<String> resetPassword(@ApiIgnore HttpServletRequest httpServletRequest, String passwordOld, String passwordNew) {
 		String loginToken = CookieUtil.readLoginToken(httpServletRequest);

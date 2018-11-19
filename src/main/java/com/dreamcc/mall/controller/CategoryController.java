@@ -30,9 +30,21 @@ public class CategoryController {
 		this.categoryService = categoryService;
 	}
 
-	@ApiOperation(value = "/getChildrenParallelCategory", notes = "the moudle is get category", response = String.class)
+	@ApiOperation(value = "get children parallel category", notes = "the module is get category")
 	@GetMapping("/getChildrenParallelCategory/{parentId}")
 	public ServerResponse<List<Category>> getChildrenParallelCategory(@PathVariable int parentId) {
 		return categoryService.getChildrenParallelCategory(parentId);
+	}
+
+	@ApiOperation(value = "add category",notes = "the module is add category")
+	@PostMapping("/addCategory")
+	public ServerResponse<String> addCategory(@ModelAttribute Category category) {
+		return categoryService.addCategory(category);
+	}
+
+	@ApiOperation(value = "update category name",notes = "the module is update category")
+	@PutMapping("/updateCategory")
+	public ServerResponse<String> setCategoryName(Integer categoryId, String categoryName){
+		return categoryService.updateCategoryName(categoryId,categoryName);
 	}
 }

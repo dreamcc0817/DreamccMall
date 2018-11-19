@@ -4,7 +4,7 @@ import com.dreamcc.mall.common.Const;
 import com.dreamcc.mall.common.ServerResponse;
 import com.dreamcc.mall.common.TokenCache;
 import com.dreamcc.mall.entity.User;
-import com.dreamcc.mall.mapper.UserMapper;
+import com.dreamcc.mall.dao.UserDao;
 import com.dreamcc.mall.service.IUserService;
 import com.dreamcc.mall.util.MD5Utils;
 import org.apache.commons.lang3.StringUtils;
@@ -25,16 +25,16 @@ import java.util.UUID;
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private UserMapper userMapper;
+	private UserDao userDao;
 
 	@Override
 	public ServerResponse<User> login(String username, String password) {
-		int count = userMapper.checkUsername(username);
+		int count = userDao.checkUsername(username);
 		if (count == 0) {
 			return ServerResponse.createByErrorMessage("user is not exist");
 		}
 		String md5password = MD5Utils.MD5EncodeUtf8ByYaml(password);
-		User user = userMapper.selectLogin(username, md5password);
+		User user = userDao.selectLogin(username, md5password);
 		if (user == null) {
 			return ServerResponse.createByErrorMessage("wrong password entered");
 		}
@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService {
 		}
 		user.setRole(Const.Role.ROLE_CUSTOMER);
 		user.setPassword(MD5Utils.MD5EncodeUtf8ByYaml(user.getPassword()));
-		int resultCount = userMapper.register(user);
+		int resultCount = userDao.register(user);
 		if (resultCount == 0) {
 			return ServerResponse.createByErrorMessage("register failed");
 		}
@@ -66,13 +66,13 @@ public class UserServiceImpl implements IUserService {
 	public ServerResponse<String> checkValid(String str, String type) {
 		if (StringUtils.isNotBlank(type)) {
 			if (Const.USERNAME.equals(type)) {
-				int resultCount = userMapper.checkUsername(str);
+				int resultCount = userDao.checkUsername(str);
 				if (resultCount > 0) {
 					return ServerResponse.createByErrorMessage("username is exist");
 				}
 			}
 			if (Const.EMAIL.equals(type)) {
-				int resultCount = userMapper.checkEmail(str);
+				int resultCount = userDao.checkEmail(str);
 				if (resultCount > 0) {
 					return ServerResponse.createByErrorMessage("email is exist");
 				}
@@ -89,7 +89,7 @@ public class UserServiceImpl implements IUserService {
 		if (validResponse.isSuccess()) {
 			return ServerResponse.createByErrorMessage("user is not exist");
 		}
-		String question = userMapper.selectQuestionByUsername(username);
+		String question = userDao.selectQuestionByUsername(username);
 		if (org.apache.commons.lang3.StringUtils.isNotBlank(question)) {
 			return ServerResponse.createBySuccess(question);
 		}
@@ -98,7 +98,7 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public ServerResponse<String> checkAnswer(String username, String question, String answer) {
-		int restCount = userMapper.checkAnswer(username, question, answer);
+		int restCount = userDao.checkAnswer(username, question, answer);
 		if (restCount > 0) {
 			String forgetToken = UUID.randomUUID().toString();
 			TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
@@ -122,7 +122,7 @@ public class UserServiceImpl implements IUserService {
 		}
 		if (org.apache.commons.lang3.StringUtils.equals(forgetToken, token)) {
 			String md5Password = MD5Utils.MD5EncodeUtf8ByYaml(passwordNew);
-			int rowCount = userMapper.updatePasswordByUsername(username, md5Password);
+			int rowCount = userDao.updatePasswordByUsername(username, md5Password);
 			if (rowCount > 0) {
 				return ServerResponse.createBySuccessMessage("update password is success");
 			}
@@ -134,13 +134,13 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public ServerResponse<String> resetPassword(String passwordOld, String passwordNew, User user) {
-		int resultCount = userMapper.checkPassword(MD5Utils.MD5EncodeUtf8ByYaml(passwordOld),user.getId());
+		int resultCount = userDao.checkPassword(MD5Utils.MD5EncodeUtf8ByYaml(passwordOld),user.getId());
 		if(resultCount == 0){
 			return ServerResponse.createByErrorMessage("旧密码错误");
 		}
 
 		user.setPassword(MD5Utils.MD5EncodeUtf8ByYaml(passwordNew));
-		int updateCount = userMapper.updateByPrimaryKeySelective(user);
+		int updateCount = userDao.updateByPrimaryKeySelective(user);
 		if(updateCount > 0){
 			return ServerResponse.createBySuccessMessage("密码更新成功");
 		}

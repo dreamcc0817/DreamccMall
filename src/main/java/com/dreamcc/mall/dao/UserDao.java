@@ -1,9 +1,9 @@
-package com.dreamcc.mall.mapper;
+package com.dreamcc.mall.dao;
 
 import com.dreamcc.mall.entity.User;
 import org.apache.ibatis.annotations.Param;
 
-public interface UserMapper {
+public interface UserDao {
 
 	/**
 	 * check username is exist

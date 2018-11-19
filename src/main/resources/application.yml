@@ -33,3 +33,7 @@ redis:
   test:
     borrow: true
     return: true
+logging:
+  level:
+    com.dreamcc.mall.mapper: debug
+################################ logging配置  ################################

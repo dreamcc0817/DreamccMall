@@ -32,7 +32,7 @@
         </sqlMapGenerator>
 
         <!-- !!!! Mapper Interface Configurations !!!! -->
-        <javaClientGenerator targetPackage="com.dreamcc.mall.mapper" targetProject="./src/main/java" type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.dreamcc.mall.dao" targetProject="./src/main/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 

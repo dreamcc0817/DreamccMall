@@ -21,4 +21,29 @@ public interface ICategoryService {
 	 * @return
 	 */
 	ServerResponse<List<Category>> getChildrenParallelCategory(Integer parentId);
+
+	/**
+	 * add category
+	 *
+	 * @param category
+	 * @return
+	 */
+	ServerResponse<String> addCategory(Category category);
+
+	/**
+	 * update category
+	 *
+	 * @param categoryId
+	 * @param categoryName
+	 * @return
+	 */
+	ServerResponse updateCategoryName(Integer categoryId, String categoryName);
+
+	/**
+	 * select category and children by Id
+	 *
+	 * @param categoryId
+	 * @return
+	 */
+	ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId);
 }

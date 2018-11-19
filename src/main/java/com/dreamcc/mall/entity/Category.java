@@ -1,5 +1,7 @@
 package com.dreamcc.mall.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,16 +17,20 @@ import java.util.Date;
  * @Date: 2018-10-26 10:47
  * @Version: V1.0
  */
+@ApiModel
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class Category {
 
+	@ApiModelProperty(hidden = true)
 	private Integer id;
 
+	@ApiModelProperty(required = true, hidden = true)
 	private Integer parentId;
 
+	@ApiModelProperty(required = true)
 	private String name;
 
 	private Boolean status;
@@ -35,4 +41,8 @@ public class Category {
 
 	private Date updateTime;
 
+	public Category(Integer parentId, String name) {
+		this.parentId = parentId;
+		this.name = name;
+	}
 }
