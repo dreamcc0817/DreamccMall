@@ -5,7 +5,8 @@
 <generatorConfiguration>
 
     <!-- !!!! Driver Class Path !!!! -->
-    <classPathEntry location="C:\Users\liu54\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
+    <classPathEntry
+            location="C:\Users\liu54\.m2\repository\mysql\mysql-connector-java\5.1.46\mysql-connector-java-5.1.46.jar"/>
 
     <context id="context" targetRuntime="MyBatis3">
         <commentGenerator>
@@ -14,7 +15,8 @@
         </commentGenerator>
 
         <!-- !!!! Database Configurations !!!! -->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mmall" userId="root" password="root"/>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mmall"
+                        userId="root" password="root"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -38,8 +40,11 @@
 
         <!-- !!!! Table Configurations !!!! -->
         <!--<table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--enableUpdateByExample="false"/>-->
-        <table tableName="mmall_category" domainObjectName="Category" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false"/>
+        <!--enableUpdateByExample="false"/>-->
+        <!--<table tableName="mmall_category" domainObjectName="Category" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false"-->
+        <!--enableUpdateByExample="false"/>-->
+        <table tableName="mmall_product" domainObjectName="Product" enableCountByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+        enableUpdateByExample="false"/>
     </context>
 </generatorConfiguration>
