@@ -1,8 +1,9 @@
-package com.dreamcc.mall.service;
+package com.dreamcc.mall.product.service;
 
 import com.dreamcc.mall.common.ServerResponse;
-import com.dreamcc.mall.entity.Product;
 import com.github.pagehelper.PageInfo;
+
+import com.dreamcc.mall.product.entity.Product;
 
 /**
  * @Title: IDEAProject
@@ -18,11 +19,11 @@ public interface IProductService {
 
 	ServerResponse updateProduct(Product product);
 
-	ServerResponse<String> setSaleStatus(Integer productId,Integer status);
+	ServerResponse<String> setSaleStatus(Integer productId, Integer status);
 
 	ServerResponse getProductDetailsById(Integer productId);
 
-	ServerResponse<PageInfo> getProductList(int pageNum,int pageSize);
+	ServerResponse<PageInfo> getProductList(int pageNum, int pageSize);
 
-	ServerResponse<PageInfo> searchProduct(String productName,int productId,int pageNum,int pageSize);
+	ServerResponse<PageInfo> searchProduct(String productName, int productId, int pageNum, int pageSize);
 }

@@ -1,4 +1,4 @@
-package com.dreamcc.mall.entity;
+package com.dreamcc.mall.product.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

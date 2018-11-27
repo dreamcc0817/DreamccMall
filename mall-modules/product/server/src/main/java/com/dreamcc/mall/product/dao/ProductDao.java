@@ -1,6 +1,6 @@
-package com.dreamcc.mall.dao;
+package com.dreamcc.mall.product.dao;
 
-import com.dreamcc.mall.entity.Product;
+import com.dreamcc.mall.product.entity.Product;
 
 import java.util.List;
 

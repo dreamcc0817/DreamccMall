@@ -1,15 +1,15 @@
-package com.dreamcc.mall.service.impl;
+package com.dreamcc.mall.product.service.impl;
 
 import com.dreamcc.mall.common.ResponseCode;
 import com.dreamcc.mall.common.ServerResponse;
 import com.dreamcc.mall.dao.CategoryDao;
-import com.dreamcc.mall.dao.ProductDao;
 import com.dreamcc.mall.entity.Category;
-import com.dreamcc.mall.entity.Product;
-import com.dreamcc.mall.service.IProductService;
+import com.dreamcc.mall.product.common.ProductDetailVo;
+import com.dreamcc.mall.product.common.ProductListVo;
+import com.dreamcc.mall.product.dao.ProductDao;
+import com.dreamcc.mall.product.entity.Product;
+import com.dreamcc.mall.product.service.IProductService;
 import com.dreamcc.mall.util.DatetimeUtil;
-import com.dreamcc.mall.vo.ProductDetailVo;
-import com.dreamcc.mall.vo.ProductListVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
@@ -71,9 +71,9 @@ public class ProductServiceImpl implements IProductService {
 		product.setStatus(status);
 		int rowCount = productDao.updateProduct(product);
 		if (rowCount > 0) {
-			return ServerResponse.createBySuccess("修改产品销售状态成功");
+			return ServerResponse.createBySuccess("update product sell state success");
 		}
-		return ServerResponse.createByErrorMessage("修改产品销售状态失败");
+		return ServerResponse.createByErrorMessage("update product sell state  failed");
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class ProductServiceImpl implements IProductService {
 		}
 		Product product = productDao.getProductById(productId);
 		if (product == null) {
-			return ServerResponse.createByErrorMessage("产品已下架或者删除");
+			return ServerResponse.createByErrorMessage("product sold out or product is deleted");
 		}
 		ProductDetailVo productDetailVo = assembleProductDetailVo(product);
 		return ServerResponse.createBySuccess(productDetailVo);
@@ -142,10 +142,9 @@ public class ProductServiceImpl implements IProductService {
 		productDetailVo.setName(product.getName());
 		productDetailVo.setStatus(product.getStatus());
 		productDetailVo.setStock(product.getStock());
-
 		Category category = categoryDao.selectByPrimaryKey(product.getCategoryId());
 		if (category == null) {
-			productDetailVo.setParentCategoryId(0);//默认根节点
+			productDetailVo.setParentCategoryId(0);
 		} else {
 			productDetailVo.setParentCategoryId(category.getParentId());
 		}

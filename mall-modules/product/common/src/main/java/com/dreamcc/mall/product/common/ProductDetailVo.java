@@ -1,4 +1,4 @@
-package com.dreamcc.mall.vo;
+package com.dreamcc.mall.product.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

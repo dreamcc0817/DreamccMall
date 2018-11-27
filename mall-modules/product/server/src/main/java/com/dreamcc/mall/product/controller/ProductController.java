@@ -1,9 +1,9 @@
-package com.dreamcc.mall.controller;
+package com.dreamcc.mall.product.controller;
 
 import com.dreamcc.mall.common.ServerResponse;
-import com.dreamcc.mall.entity.Product;
-import com.dreamcc.mall.service.IProductService;
-import com.dreamcc.mall.vo.ProductDetailVo;
+import com.dreamcc.mall.product.common.ProductDetailVo;
+import com.dreamcc.mall.product.entity.Product;
+import com.dreamcc.mall.product.service.IProductService;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
