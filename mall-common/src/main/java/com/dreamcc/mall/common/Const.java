@@ -26,4 +26,12 @@ public class Const {
 		int ROLE_CUSTOMER = 0;
 		int ROLE_ADMIN = 1;
 	}
+
+	public interface Cart{
+		int CHECKED = 1;//shopping cart checked
+		int UN_CHECKED = 0;//shopping cart unchecked
+
+		String LIMIT_NUM_FAIL = "LIMIT_NUM_FAIL";
+		String LIMIT_NUM_SUCCESS = "LIMIT_NUM_SUCCESS";
+	}
 }

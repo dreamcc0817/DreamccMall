@@ -1,8 +1,17 @@
 spring:
+  application:
+    name: config
   cloud:
     config:
       server:
         git:
-          uri:
-          username: dreamcc0817@gmail.com
-          password: LiuChang0817
+          uri: https://github.com/dreamcc0817/DreamccMall
+          search-paths: config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8001/eureka/
+management:
+  endpoints:
+    web:
+      expose: "*"

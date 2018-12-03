@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dreamcc.mall.cart.dao.CartDao">
+    <insert id="insertCart"></insert>
+    <insert id="checkedOrUncheckedProduct"></insert>
+    <update id="updateCart"></update>
+    <delete id="deleteCart"></delete>
+    <delete id="deleteByUserIdProductIds"></delete>
+    <select id="getCartList" resultType="com.dreamcc.mall.cart.entity.Cart"></select>
+    <select id="selectCartProductCheckedStatusByUserId" resultType="java.lang.Integer"></select>
+    <select id="selectCartByUserIdProductId" resultType="com.dreamcc.mall.cart.entity.Cart"></select>
+    <select id="selectCartProductCount" resultType="java.lang.Integer"></select>
+    <select id="selectCheckedCartByUserId" resultType="com.dreamcc.mall.cart.entity.Cart"></select>
+</mapper>

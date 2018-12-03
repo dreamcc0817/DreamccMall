@@ -9,12 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>product</artifactId>
+    <artifactId>cart</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>product-common</module>
-        <module>product-server</module>
-        <module>product-client</module>
+        <module>cart-common</module>
+        <module>cart-client</module>
+        <module>cart-server</module>
     </modules>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.dreamcc</groupId>
+            <artifactId>product-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
