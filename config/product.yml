@@ -1,6 +1,9 @@
+hello: hello
+server:
+  port: 8887
 spring:
   application:
-    name: config
+    name: product
   cloud:
     config:
       server:
