@@ -1,7 +1,7 @@
 package com.dreamcc.mall.cart.server.service;
 
 import com.dreamcc.mall.cart.server.vo.CartVo;
-import com.dreamcc.mall.common.ServerResponse;
+import com.dreamcc.mall.common.common.ServerResponse;
 
 /**
  * @Title: IDEAProject

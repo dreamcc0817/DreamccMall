@@ -1,9 +1,9 @@
 server:
-  port: 8001
+  port: 7001
 
 spring:
   application:
-    name: mall-eureka8001
+    name: mall-eureka7001
 
 eureka:
   client:

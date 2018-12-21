@@ -1,6 +1,6 @@
 package com.dreamcc.mall.user.client;
 
-import com.dreamcc.mall.entity.Category;
+import com.dreamcc.mall.user.common.entity.Category;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

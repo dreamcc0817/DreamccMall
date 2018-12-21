@@ -10,6 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>order</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>order-client</module>
+        <module>order-server</module>
+        <module>order-common</module>
+    </modules>
 
 
 </project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="USE_RELEASE_OPTION" value="false" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="cart-client" />
+        <module name="cart-common" />
+        <module name="cart-server" />
+        <module name="mall-common" />
+        <module name="mall-config" />
+        <module name="mall-eureka" />
+        <module name="order-client" />
+        <module name="order-common" />
+        <module name="order-server" />
+        <module name="product-client" />
+        <module name="product-common" />
+        <module name="product-server" />
+        <module name="user-client" />
+        <module name="user-common" />
+        <module name="user-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="cart" target="1.8" />
+      <module name="cart-client" target="1.8" />
+      <module name="cart-common" target="1.8" />
+      <module name="cart-server" target="1.8" />
+      <module name="mall-common" target="1.8" />
+      <module name="mall-config" target="1.8" />
+      <module name="mall-eureka" target="1.8" />
+      <module name="mall-modules" target="1.8" />
+      <module name="MicroMall" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="order-client" target="1.8" />
+      <module name="order-common" target="1.8" />
+      <module name="order-server" target="1.8" />
+      <module name="product" target="1.8" />
+      <module name="product-client" target="1.8" />
+      <module name="product-common" target="1.8" />
+      <module name="product-server" target="1.8" />
+      <module name="user" target="1.8" />
+      <module name="user-client" target="1.8" />
+      <module name="user-common" target="1.8" />
+      <module name="user-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

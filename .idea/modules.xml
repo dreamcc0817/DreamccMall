@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MicroMall.iml" filepath="$PROJECT_DIR$/.idea/MicroMall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/cart/cart.iml" filepath="$PROJECT_DIR$/mall-modules/cart/cart.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/cart/cart-client/cart-client.iml" filepath="$PROJECT_DIR$/mall-modules/cart/cart-client/cart-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/cart/cart-common/cart-common.iml" filepath="$PROJECT_DIR$/mall-modules/cart/cart-common/cart-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/cart/cart-server/cart-server.iml" filepath="$PROJECT_DIR$/mall-modules/cart/cart-server/cart-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-common/mall-common.iml" filepath="$PROJECT_DIR$/mall-common/mall-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-config/mall-config.iml" filepath="$PROJECT_DIR$/mall-config/mall-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-eureka/mall-eureka.iml" filepath="$PROJECT_DIR$/mall-eureka/mall-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/mall-modules.iml" filepath="$PROJECT_DIR$/mall-modules/mall-modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/order/order.iml" filepath="$PROJECT_DIR$/mall-modules/order/order.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/order/order-client/order-client.iml" filepath="$PROJECT_DIR$/mall-modules/order/order-client/order-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/order/order-common/order-common.iml" filepath="$PROJECT_DIR$/mall-modules/order/order-common/order-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/order/order-server/order-server.iml" filepath="$PROJECT_DIR$/mall-modules/order/order-server/order-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/product/product.iml" filepath="$PROJECT_DIR$/mall-modules/product/product.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/product/product-client/product-client.iml" filepath="$PROJECT_DIR$/mall-modules/product/product-client/product-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/product/product-common/product-common.iml" filepath="$PROJECT_DIR$/mall-modules/product/product-common/product-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/product/product-server/product-server.iml" filepath="$PROJECT_DIR$/mall-modules/product/product-server/product-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/user/user.iml" filepath="$PROJECT_DIR$/mall-modules/user/user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/user/user-client/user-client.iml" filepath="$PROJECT_DIR$/mall-modules/user/user-client/user-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/user/user-common/user-common.iml" filepath="$PROJECT_DIR$/mall-modules/user/user-common/user-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mall-modules/user/user-server/user-server.iml" filepath="$PROJECT_DIR$/mall-modules/user/user-server/user-server.iml" />
+    </modules>
+  </component>
+</project>
