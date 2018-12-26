@@ -1,6 +1,6 @@
 package com.dreamcc.mall.cart.server.service;
 
-import com.dreamcc.mall.cart.server.vo.CartVo;
+import com.dreamcc.mall.cart.common.CartVo;
 import com.dreamcc.mall.common.common.ServerResponse;
 
 /**

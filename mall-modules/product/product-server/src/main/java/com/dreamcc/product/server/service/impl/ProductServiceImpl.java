@@ -4,7 +4,7 @@ package com.dreamcc.product.server.service.impl;
 import com.dreamcc.mall.common.common.ResponseCode;
 import com.dreamcc.mall.common.common.ServerResponse;
 import com.dreamcc.mall.user.common.entity.Category;
-import com.dreamcc.mall.common.util.DatetimeUtil;
+import com.dreamcc.mall.common.util.DateTimeUtil;
 import com.dreamcc.mall.user.client.CategoryClient;
 import com.dreamcc.mall.product.common.ProductDetailVo;
 import com.dreamcc.mall.product.common.ProductListVo;
@@ -149,8 +149,8 @@ public class ProductServiceImpl implements IProductService {
 		} else {
 			productDetailVo.setParentCategoryId(category.getParentId());
 		}
-		productDetailVo.setCreateTime(DatetimeUtil.dateToStr(product.getCreateTime()));
-		productDetailVo.setUpdateTime(DatetimeUtil.dateToStr(product.getUpdateTime()));
+		productDetailVo.setCreateTime(DateTimeUtil.dateToStr(product.getCreateTime()));
+		productDetailVo.setUpdateTime(DateTimeUtil.dateToStr(product.getUpdateTime()));
 		return productDetailVo;
 	}
 }

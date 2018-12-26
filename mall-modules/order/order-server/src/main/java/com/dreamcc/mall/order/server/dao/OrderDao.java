@@ -1,5 +1,10 @@
 package com.dreamcc.mall.order.server.dao;
 
+import com.dreamcc.mall.order.server.entity.Order;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * @Title: IDEAProject
  * @Package: com.dreamcc.mall.order.server.dao
@@ -9,12 +14,20 @@ package com.dreamcc.mall.order.server.dao;
  * @Version: V1.0
  */
 public interface OrderDao {
-	int insertOrder();
+	int insertOrder(Order order);
 
-	int updateOrder();
+	int updateOrder(Order order);
 
-	int deleteOrder();
+	int deleteOrderByPrimaryKey(Integer id);
 
-	int selectOrder();
+	Order selectOrderByPrimaryKey(Integer id);
+
+	Order selectOrderByUserIdAndOrderNo(@Param("userId")Integer userId,@Param("orderId")Long orderNo);
+
+	Order selectByOrderId(Long orderId);
+
+	List<Order> selectByUserId(Integer userId);
+
+	List<Order> selectAllOrder();
 
 }

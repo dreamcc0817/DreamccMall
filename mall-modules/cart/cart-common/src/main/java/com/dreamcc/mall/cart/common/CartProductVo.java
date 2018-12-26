@@ -1,4 +1,4 @@
-package com.dreamcc.mall.cart.server.vo;
+package com.dreamcc.mall.cart.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

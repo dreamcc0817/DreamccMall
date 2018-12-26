@@ -16,7 +16,7 @@ import java.util.Date;
  * @Date: 2018-10-25 09:16
  * @Version: V1.0
  */
-public class DatetimeUtil {
+public class DateTimeUtil {
 
 	public static Date strToDate(String dateTimeStr, String formatStr) {
 		DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(formatStr);
